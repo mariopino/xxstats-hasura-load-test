@@ -5,7 +5,10 @@ import gql from 'graphql-tag';
 import ws from 'ws';
 
 // number of clients to run
-const instances = 100;
+const instances = 200;
+
+// delay when adding clients (ms)
+const delay = 1000;
 
 // graphql endpoint
 const GRAPHQL_ENDPOINT = 'wss://dev.xx-network.polkastats.io/graphql';
@@ -133,6 +136,10 @@ const subscriptions = [
   }
 ];
 
+const wait = async (ms) => new Promise((resolve) => {
+  return setTimeout(resolve, ms);
+});
+
 const getWsClient = function(wsurl) {
   const client = new SubscriptionClient(
     wsurl, {reconnect: true}, ws
@@ -145,7 +152,7 @@ const createSubscriptionObservable = (wsurl, query) => {
   return execute(link, { query });
 };
 
-function subscribe(client, name, query) {
+const subscribe = async (client, name, query) => {
   const GRAPHQL_QUERY = gql`${query}`;
   const subscriptionClient = createSubscriptionObservable(
     GRAPHQL_ENDPOINT,
@@ -159,8 +166,18 @@ function subscribe(client, name, query) {
   });
 }
 
-for (let client = 1; client <= instances; client++) {
-  for (const { name, query } of subscriptions) {
-    subscribe(client, name, query);
+const main = async() => {
+  for (let client = 1; client <= instances; client++) {
+    console.log(`Adding client ${client}`);
+    for (const { name, query } of subscriptions) {
+      subscribe(client, name, query);
+    }
+    await wait(delay);
   }
 }
+
+main().catch((error) => {
+  console.log(error.message, error.stack);
+  process.exit(-1);
+});
+
