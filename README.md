@@ -2,7 +2,7 @@
 
 
 ```
-git clone
+git clone https://github.com/mariopino/xxstats-hasura-load-test.git
 yarn
 node index.js
 ```

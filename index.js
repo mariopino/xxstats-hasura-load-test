@@ -4,8 +4,8 @@ import { SubscriptionClient } from 'subscriptions-transport-ws';
 import gql from 'graphql-tag';
 import ws from 'ws';
 
-// number of clients to run in parallel
-const instances = 500;
+// number of clients to run
+const instances = 100;
 
 // graphql endpoint
 const GRAPHQL_ENDPOINT = 'wss://dev.xx-network.polkastats.io/graphql';
