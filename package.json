@@ -1,0 +1,20 @@
+{
+  "name": "xxstats-hasura-load-test",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mario Pino",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-link": "^1.2.2",
+    "apollo-link-ws": "^1.0.8",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "subscriptions-transport-ws": "^0.9.12",
+    "ws": "^5.2.2"
+  }
+}
