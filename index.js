@@ -8,7 +8,7 @@ import ws from 'ws';
 const instances = 200;
 
 // delay when adding clients (ms)
-const delay = 100;
+const delay = 200;
 
 // graphql endpoint
 const GRAPHQL_ENDPOINT = 'wss://dev.xx-network.polkastats.io/graphql';
