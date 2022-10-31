@@ -6,6 +6,7 @@ Run test for 100 clients (default):
 
 ```
 git clone https://github.com/mariopino/xxstats-hasura-load-test.git
+cd xxstats-hasura-load-test
 yarn
 node index.js
 ```
