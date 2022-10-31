@@ -8,7 +8,7 @@ import ws from 'ws';
 const instances = 200;
 
 // delay when adding clients (ms)
-const delay = 1000;
+const delay = 100;
 
 // graphql endpoint
 const GRAPHQL_ENDPOINT = 'wss://dev.xx-network.polkastats.io/graphql';
@@ -162,6 +162,7 @@ const subscribe = async (client, name, query) => {
     const timestamp = Date.now();
     console.log(`${timestamp} Received event from client ${client} in '${name}' subscription: ${JSON.stringify(eventData).substring(0,80)}...`);
   }, (err) => {
+    const timestamp = Date.now();
     console.log(`${timestamp} Error in client ${client} for subscription '${name}'`, err);
   });
 }
